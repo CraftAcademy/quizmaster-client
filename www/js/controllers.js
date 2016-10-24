@@ -3,7 +3,7 @@ angular.module('quizmaster.controllers', [ 'ngActionCable' ])
   .controller('DashCtrl', function ($scope) {
   })
 
-  .controller('QuizController', function ($scope, $ionicModal, ActionCableChannel) {
+  .controller('QuizController', function ($scope, $ionicModal, ActionCableChannel, $interpolate) {
     // With the new view caching in Ionic, Controllers are only called
     // when they are recreated or on app start, instead of every page change.
     // To listen for when this page is active (for example, to refresh data),
@@ -25,14 +25,17 @@ angular.module('quizmaster.controllers', [ 'ngActionCable' ])
     var consumer = new ActionCableChannel('QuizChannel');
     var callback = function(data) {
       console.log(data);
+      if(data.welcome == 'true'){
+        angular.element(document.querySelector('#message')).html(data.message);
+      }
+      angular.element(document.querySelector('#message')).html(data);
+
     };
 
     $scope.openModal = function () {
       $scope.modal.show();
       consumer.subscribe(callback)
-        .then(function() {
-          console.log('subscribed, maybe')
-
+        .then(function(data) {
         });
 
     }
