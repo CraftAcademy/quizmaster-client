@@ -17,11 +17,13 @@ angular.module('quizmaster.controllers', [])
         scope: $scope,
         animation: 'slide-in-up'
       }).then(function (modal) {
-        debugger;
         $scope.modal = modal;
-        $scope.modal.show();
-      })
-      ;
+        $scope.openModal();
+      });
+    };
+
+    $scope.openModal = function() {
+      $scope.modal.show();
     }
 
   });
