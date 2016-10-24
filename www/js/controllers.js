@@ -22,9 +22,9 @@ angular.module('quizmaster.controllers', [ 'ngActionCable' ])
       });
     };
 
-    var consumer = new ActionCableChannel('quiz_channel');
-    var callback = function() {
-      console.log('here is the callback');
+    var consumer = new ActionCableChannel('QuizChannel');
+    var callback = function(data) {
+      console.log(data);
     };
 
     $scope.openModal = function () {
