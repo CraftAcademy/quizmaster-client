@@ -45,7 +45,7 @@ angular.module('quizmaster', ['ionic', 'quizmaster.controllers', 'quizmaster.ser
     views: {
       'tab-dash': {
         templateUrl: 'templates/tab-dash.html',
-        controller: 'DashCtrl'
+        controller: 'QuizController'
       }
     }
   });
