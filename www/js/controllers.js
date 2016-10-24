@@ -22,7 +22,7 @@ angular.module('quizmaster.controllers', [ 'ngActionCable' ])
       });
     };
 
-    var consumer = new ActionCableChannel('QuizChannel');
+    var consumer = new ActionCableChannel('QuizMobileChannel');
     var callback = function(data) {
       console.log(data);
       if(data.welcome == 'true'){
