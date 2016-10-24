@@ -24,8 +24,8 @@ angular.module('quizmaster', ['ionic', 'quizmaster.controllers', 'quizmaster.ser
   })
 
   .run(function (ActionCableConfig) {
-    ActionCableConfig.wsUri = "redis://localhost:6379/1";
-    ActionCableConfig.autoStart = false;
+    ActionCableConfig.wsUri = "ws://localhost:3000/cable";
+    ActionCableConfig.autoStart = true;
   })
 
   .config(function ($stateProvider, $urlRouterProvider) {

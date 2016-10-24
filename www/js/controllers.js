@@ -13,7 +13,6 @@ angular.module('quizmaster.controllers', [ 'ngActionCable' ])
     //});
 
     $scope.goToQuiz = function () {
-      console.log('in the goToQuiz function');
       $ionicModal.fromTemplateUrl('templates/quiz-page.html', {
         scope: $scope,
         animation: 'slide-in-up'
