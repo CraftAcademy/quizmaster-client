@@ -24,29 +24,12 @@ angular.module('quizmaster.controllers', [ 'ngActionCable' ])
 
     var consumer = new ActionCableChannel('QuizChannel');
     var callback = function(data) {
-      console.log(data);
       if(data.welcome == 'true'){
         angular.element(document.querySelector('#message')).html(data.message);
       } else {
         angular.element(document.querySelector('#message')).html(data);
-        this.submitAnswer = function() {
-          var dataset, quiz, answer, question, team ;
-          dataset = angular.element(document.querySelector('#info'))[0];
-          quiz = dataset.getAttribute('data-quiz-id');
-          // team = dataset.getAttribute('data-team-id');
-          question = dataset.getAttribute('data-question-id');
-          answer = angular.element(document.querySelector('#body'))[0].value;
-          if (answer.trim().length >= 1) {
-            // Team ID needs to come from cookies or something here.
-            // App.quiz.submitAnswer({answer: answer.val(), team_id: team, quiz_id: quiz, question_id: question});
-            console.log({answer: answer, team_id: team, quiz_id: quiz, question_id: question});
-            // $('.answer_form').hide();
-            // $('.wait').show();
-          } else {
-            angular.element(document.querySelector('#message')).html('Enter an answer!');
-          }
-          return false;
-        };
+
+
       }
     };
 
@@ -55,7 +38,32 @@ angular.module('quizmaster.controllers', [ 'ngActionCable' ])
     $scope.openModal = function () {
       $scope.modal.show();
       consumer.subscribe(callback)
-        .then(function(data) {
+        .then(function() {
+          this.submitAnswer = function() {
+            var dataset, quiz, answer, question, team, answer_hash ;
+            dataset = angular.element(document.querySelector('#info'))[0];
+            quiz = dataset.getAttribute('data-quiz-id');
+            // team = dataset.getAttribute('data-team-id');
+            team = 1;
+            question = dataset.getAttribute('data-question-id');
+            answer = angular.element(document.querySelector('#body'))[0].value;
+
+            var sendAnswer = function() {
+              consumer.send(answer_hash, 'send_message');
+            };
+
+            if (answer.trim().length >= 1) {
+              // Team ID needs to come from cookies or something here. - hard-coded as 1 for the moment
+              answer_hash = {answer: answer, team_id: team, quiz_id: quiz, question_id: question};
+              sendAnswer(answer_hash);
+              console.log({answer: answer, team_id: team, quiz_id: quiz, question_id: question});
+              // $('.answer_form').hide();
+              // $('.wait').show();
+            } else {
+              angular.element(document.querySelector('#message')).html('Enter an answer!');
+            }
+            return false;
+          };
         });
 
     }
