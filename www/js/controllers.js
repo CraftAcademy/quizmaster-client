@@ -35,15 +35,15 @@ angular.module('quizmaster.controllers', [ 'ngActionCable' ])
           quiz = dataset.getAttribute('data-quiz-id');
           // team = dataset.getAttribute('data-team-id');
           question = dataset.getAttribute('data-question-id');
-          answer = $this.find('#body');
-          if ($.trim(answer.val()).length >= 1) {
+          answer = angular.element(document.querySelector('#body'))[0].value;
+          if (answer.trim().length >= 1) {
             // Team ID needs to come from cookies or something here.
             // App.quiz.submitAnswer({answer: answer.val(), team_id: team, quiz_id: quiz, question_id: question});
-            console.log('inside if of submitAnswer');
-            $('.answer_form').hide();
-            $('.wait').show();
+            console.log({answer: answer, team_id: team, quiz_id: quiz, question_id: question});
+            // $('.answer_form').hide();
+            // $('.wait').show();
           } else {
-            $('#message').append('WTF Dude?!?')
+            angular.element(document.querySelector('#message')).html('Enter an answer!');
           }
           return false;
         };
