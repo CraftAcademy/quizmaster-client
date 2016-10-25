@@ -49,7 +49,7 @@ angular.module('quizmaster.controllers', [ 'ngActionCable' ])
             answer = angular.element(document.querySelector('#body'))[0].value;
 
             var sendAnswer = function() {
-              consumer.send(answer_hash, 'send_message');
+              consumer.send(answer_hash, 'submit_answer');
             };
 
             if (answer.trim().length >= 1) {
