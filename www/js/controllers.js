@@ -24,16 +24,13 @@ angular.module('quizmaster.controllers', [ 'ngActionCable' ])
 
     var consumer = new ActionCableChannel('QuizChannel');
     var callback = function(data) {
+      console.log(data);
       if(data.welcome == 'true'){
         angular.element(document.querySelector('#message')).html(data.message);
       } else {
         angular.element(document.querySelector('#message')).html(data);
-
-
       }
     };
-
-
 
     $scope.openModal = function () {
       $scope.modal.show();
@@ -56,7 +53,6 @@ angular.module('quizmaster.controllers', [ 'ngActionCable' ])
               // Team ID needs to come from cookies or something here. - hard-coded as 1 for the moment
               answer_hash = {answer: answer, team_id: team, quiz_id: quiz, question_id: question};
               sendAnswer(answer_hash);
-              console.log({answer: answer, team_id: team, quiz_id: quiz, question_id: question});
               // $('.answer_form').hide();
               // $('.wait').show();
             } else {
