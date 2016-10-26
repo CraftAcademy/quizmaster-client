@@ -28,7 +28,7 @@ angular.module('quizmaster', ['ionic', 'quizmaster.controllers', 'quizmaster.ser
     ActionCableConfig.autoStart = true;
   })
 
-  .config(function ($urlRouterProvider, $stateProvider) {
+  .config(function ($stateProvider, $urlRouterProvider) {
 
     // Ionic uses AngularUI Router which uses the concept of states
     // Learn more here: https://github.com/angular-ui/ui-router
