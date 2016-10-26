@@ -6,11 +6,12 @@ navigation history that also transitions its views in and out.
 <ion-view view-title='Quizmaster'>
   <ion-content>
     <div class='box'>
-      <h1>Quizmaster</h1>
-      <p>
-        This is the home page for our app. It should contain the box for entering a code.
-      </p>
-      <a ng-click="goToQuiz();">Click this link to view the quiz!</a>
+      <h1>Play the Game</h1>
+      <div class="form-control code">
+
+        <input type="text" placeholder="Enter your code" class="form-control">
+      </div>
+      <button ng-click="goToQuiz();" class="btn btn-primary btn-lg btn-block">Click this link to view the quiz!</button>
     </div>
     <a target="_blank" href="http://www.craftacademy.se">
       <img src='../img/logo.png'/>
