@@ -51,10 +51,11 @@ angular.module('quizmaster.controllers', ['ngActionCable'])
       consumer = new ActionCableChannel('QuizChannel', {quiz_id: quiz.id});
       consumer.subscribe(callback)
         .then(function () {
-          console.log('subscribed to the right channel');
-          // quizFunctions();
           $scope.registerTeam = function () {
-            console.log('registerTeam function');
+            var team_name = angular.element(document.querySelector('#teamName'))[0].value;
+            $scope.team_name = team_name;
+            message = {team_name: team_name, quiz_id: quiz.id};
+            consumer.send(message, 'create_team');
           };
         });
     };
