@@ -39,6 +39,9 @@ img {
 .answer_submitted {
   display: none;
 }
+#badCode {
+  display: none;
+}
 .btn {
   display: inline-block;
   padding: 6px 12px;

@@ -17,26 +17,32 @@ angular.module('quizmaster.controllers', ['ngActionCable'])
       code = angular.element(document.querySelector('#codeEntry'))[0].value;
       consumer = new ActionCableChannel('QuizChannel');
       callback = function (obj) {
-        console.log(obj);
-        quiz = obj;
-        $scope.quiz = quiz;
-        consumer.unsubscribe()
-          .then(function () {
-            subscribeToQuiz();
-          });
+        if(obj != null){
+          quiz = obj;
+          $scope.quiz = quiz;
+          consumer.unsubscribe()
+            .then(function () {
+              subscribeToQuiz();
+              angular.element(document.querySelector('#badCode'))[0].style.display = "none";
+              $ionicModal.fromTemplateUrl('templates/quiz-page.html', {
+                scope: $scope,
+                animation: 'slide-in-up'
+              }).then(function (modal) {
+                $scope.modal = modal;
+                $scope.openModal();
+              });
+            });
+        } else {
+          angular.element(document.querySelector('#badCode'))[0].style.display = "inline";
+        }
+
       };
       consumer.subscribe(callback)
         .then(function () {
           consumer.send(code, 'get_quiz');
         });
 
-      $ionicModal.fromTemplateUrl('templates/quiz-page.html', {
-        scope: $scope,
-        animation: 'slide-in-up'
-      }).then(function (modal) {
-        $scope.modal = modal;
-        $scope.openModal();
-      });
+
     };
 
     var subscribeToQuiz = function () {
