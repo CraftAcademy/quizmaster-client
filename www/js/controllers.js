@@ -22,7 +22,6 @@ angular.module('quizmaster.controllers', ['ngActionCable'])
         $scope.quiz = quiz;
         consumer.unsubscribe()
           .then(function () {
-            console.log('unsubscribed');
             subscribeToQuiz();
           });
       };
@@ -52,13 +51,15 @@ angular.module('quizmaster.controllers', ['ngActionCable'])
       consumer = new ActionCableChannel('QuizChannel', {quiz_id: quiz.id});
       consumer.subscribe(callback)
         .then(function () {
-          subscribeToQuizChannel();
+          console.log('subscribed to the right channel');
+          // quizFunctions();
+          $scope.registerTeam = function () {
+            console.log('registerTeam function');
+          };
         });
-
-
     };
 
-    var subscribeToQuizChannel = function () {
+    var quizFunctions = function () {
         this.submitAnswer = function () {
           var dataset, quiz, answer, question, team, answer_hash;
           dataset = angular.element(document.querySelector('#info'))[0];
@@ -83,9 +84,7 @@ angular.module('quizmaster.controllers', ['ngActionCable'])
           }
           return false;
         };
-        this.registerTeam = function () {
-          console.log('registerTeam function');
-        };
+
       }
       ;
 
