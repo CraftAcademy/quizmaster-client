@@ -22,7 +22,7 @@ angular.module('quizmaster.controllers', [ 'ngActionCable' ])
       });
     };
 
-    var consumer = new ActionCableChannel('QuizChannel');
+    var consumer = new ActionCableChannel('QuizChannel', {quiz_id: 43, team_id: 2});
     var callback = function(data) {
       console.log(data);
       if(data.welcome == 'true'){
@@ -41,7 +41,7 @@ angular.module('quizmaster.controllers', [ 'ngActionCable' ])
             dataset = angular.element(document.querySelector('#info'))[0];
             quiz = dataset.getAttribute('data-quiz-id');
             // team = dataset.getAttribute('data-team-id');
-            team = 1;
+            team = 2;
             question = dataset.getAttribute('data-question-id');
             answer = angular.element(document.querySelector('#body'))[0].value;
 
