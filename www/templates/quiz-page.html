@@ -1,9 +1,16 @@
 <ion-modal-view view-title='Quiz Page'>
   <ion-content class='padding'>
     <div class='box'>
-      <h1>Here's the page where we'll put the quiz bits. The #message div is below:</h1>
+      <h1>Welcome to Quiz: {{quiz.name}}</h1>
+      <div id='register_team'>
+        Enter your teamname and press the button!
+        <br/> <br/>
+        <div class="form-control code">
+          <input type="text" placeholder="Enter your code" class="form-control">
+        </div>
+        <button ng-click="registerTeam();" class="btn btn-primary btn-lg btn-block">Click this link to view the quiz!</button>
+      </div>
       <div id='message'></div>
-      And this is below the #message div.
     </div>
     <img src='../img/logo.png'/>
   </ion-content>

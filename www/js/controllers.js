@@ -11,8 +11,11 @@ angular.module('quizmaster.controllers', [ 'ngActionCable' ])
     //
     //$scope.$on('$ionicView.enter', function(e) {
     //});
+    var consumer, callback;
 
-    $scope.goToQuiz = function () {
+    $scope.findQuiz = function (code) {
+      consumer = new ActionCableChannel('QuizChannel');
+
       $ionicModal.fromTemplateUrl('templates/quiz-page.html', {
         scope: $scope,
         animation: 'slide-in-up'
@@ -22,8 +25,8 @@ angular.module('quizmaster.controllers', [ 'ngActionCable' ])
       });
     };
 
-    var consumer = new ActionCableChannel('QuizChannel');
-    var callback = function(data) {
+    consumer = new ActionCableChannel('QuizChannel');
+    callback = function(data) {
       console.log(data);
       if(data.welcome == 'true'){
         angular.element(document.querySelector('#message')).html(data.message);
