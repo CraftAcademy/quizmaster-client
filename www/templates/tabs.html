@@ -3,12 +3,17 @@ Create tabs with an icon and label, using the tabs-positive style.
 Each tab's child <ion-nav-view> directive will have its own
 navigation history that also transitions its views in and out.
 -->
-<ion-tabs class="tabs-icon-top tabs-color-active-positive">
-
-  <!-- Dashboard Tab -->
-  <ion-tab title="Status" icon-off="ion-ios-pulse" icon-on="ion-ios-pulse-strong" href="#/tab/dash">
-    <ion-nav-view name="tab-dash"></ion-nav-view>
-  </ion-tab>
-
-
-</ion-tabs>
+<ion-view view-title='Quizmaster'>
+  <ion-content>
+    <div class='box'>
+      <h1>Quizmaster</h1>
+      <p>
+        This is the home page for our app. It should contain the box for entering a code.
+      </p>
+      <a ng-click="goToQuiz();">Click this link to view the quiz!</a>
+    </div>
+    <a target="_blank" href="http://www.craftacademy.se">
+      <img src='../img/logo.png'/>
+    </a>
+  </ion-content>
+</ion-view>
