@@ -53,41 +53,41 @@ angular.module('quizmaster.controllers', ['ngActionCable'])
         .then(function () {
           $scope.registerTeam = function () {
             var team_name = angular.element(document.querySelector('#teamName'))[0].value;
-            $scope.team_name = team_name;
-            message = {team_name: team_name, quiz_id: quiz.id};
-            consumer.send(message, 'create_team');
+            if (team_name.trim().length >= 1) {
+              $scope.team_name = team_name;
+              message = {team_name: team_name, quiz_id: quiz.id};
+              consumer.send(message, 'create_team');
+              $scope.registeredTeam = true;
+              angular.element(document.querySelector('#message')).html('Questions will appear here. Hang tight.');
+            } else {
+              angular.element(document.querySelector('#message')).html('Enter a team name!');
+            }
+
+            // angular.element(document.querySelector('#register_team'))[0].hide();
+
+          };
+          $scope.submitAnswer = function () {
+            var dataset, quiz, answer, question, team, answer_hash;
+            dataset = angular.element(document.querySelector('#info'))[0];
+            quiz = dataset.getAttribute('data-quiz-id');
+            team = team_name;
+            question = dataset.getAttribute('data-question-id');
+            answer = angular.element(document.querySelector('#body'))[0].value;
+
+            var sendAnswer = function () {
+              consumer.send(answer_hash, 'submit_answer');
+            };
+
+            if (answer.trim().length >= 1) {
+              answer_hash = {answer: answer, team_name: team, quiz_id: quiz, question_id: question};
+              sendAnswer(answer_hash);
+            } else {
+              angular.element(document.querySelector('#message')).html('Enter an answer!');
+            }
+            return false;
           };
         });
     };
-
-    var quizFunctions = function () {
-        this.submitAnswer = function () {
-          var dataset, quiz, answer, question, team, answer_hash;
-          dataset = angular.element(document.querySelector('#info'))[0];
-          quiz = dataset.getAttribute('data-quiz-id');
-          // team = dataset.getAttribute('data-team-id');
-          team = 2;
-          question = dataset.getAttribute('data-question-id');
-          answer = angular.element(document.querySelector('#body'))[0].value;
-
-          var sendAnswer = function () {
-            consumer.send(answer_hash, 'submit_answer');
-          };
-
-          if (answer.trim().length >= 1) {
-            // Team ID needs to come from cookies or something here. - hard-coded as 1 for the moment
-            answer_hash = {answer: answer, team_id: team, quiz_id: quiz, question_id: question};
-            sendAnswer(answer_hash);
-            // $('.answer_form').hide();
-            // $('.wait').show();
-          } else {
-            angular.element(document.querySelector('#message')).html('Enter an answer!');
-          }
-          return false;
-        };
-
-      }
-      ;
 
     $scope.openModal = function () {
       $scope.modal.show();
