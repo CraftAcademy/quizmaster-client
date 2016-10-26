@@ -36,6 +36,9 @@ img {
   font-family: 'Creepster', sans-serif;
   font-size:24px;
 }
+.answer_submitted {
+  display: none;
+}
 .btn {
   display: inline-block;
   padding: 6px 12px;
@@ -79,6 +82,7 @@ img {
 }
 .code {
   margin-bottom:5px;
+  margin-top:10px;
 }
 .btn-block {
   display: block;

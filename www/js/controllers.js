@@ -11,7 +11,7 @@ angular.module('quizmaster.controllers', ['ngActionCable'])
     //
     //$scope.$on('$ionicView.enter', function(e) {
     //});
-    var consumer, callback, quiz;
+    var consumer, callback, quiz, team_name;
 
     $scope.findQuiz = function () {
       code = angular.element(document.querySelector('#codeEntry'))[0].value;
@@ -41,18 +41,18 @@ angular.module('quizmaster.controllers', ['ngActionCable'])
 
     var subscribeToQuiz = function () {
       callback = function (data) {
-        console.log(data);
         if (data.welcome == 'true') {
           angular.element(document.querySelector('#message')).html(data.message);
         } else {
           angular.element(document.querySelector('#message')).html(data);
+          angular.element(document.querySelector('.answer_submitted'))[0].style.display = "none";
         }
       };
       consumer = new ActionCableChannel('QuizChannel', {quiz_id: quiz.id});
       consumer.subscribe(callback)
         .then(function () {
           $scope.registerTeam = function () {
-            var team_name = angular.element(document.querySelector('#teamName'))[0].value;
+            team_name = angular.element(document.querySelector('#teamName'))[0].value;
             if (team_name.trim().length >= 1) {
               $scope.team_name = team_name;
               message = {team_name: team_name, quiz_id: quiz.id};
@@ -66,7 +66,7 @@ angular.module('quizmaster.controllers', ['ngActionCable'])
             // angular.element(document.querySelector('#register_team'))[0].hide();
 
           };
-          $scope.submitAnswer = function () {
+          this.submitAnswer = function () {
             var dataset, quiz, answer, question, team, answer_hash;
             dataset = angular.element(document.querySelector('#info'))[0];
             quiz = dataset.getAttribute('data-quiz-id');
