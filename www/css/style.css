@@ -16,7 +16,10 @@ ion-view, ion-modal-view {
   background: linear-gradient(to bottom, #ffc501 0%, #fe9600 100%);
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffc501', endColorstr='#fe9600', GradientType=0 );
 }
-
+img {
+  display: block;
+  margin: 20px auto;
+}
 .box {
   margin: 10px;
   padding:20px;
