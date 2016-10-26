@@ -19,6 +19,7 @@ angular.module('quizmaster.controllers', ['ngActionCable'])
       callback = function (obj) {
         console.log(obj);
         quiz = obj;
+        $scope.quiz = quiz;
         consumer.unsubscribe()
           .then(function () {
             console.log('unsubscribed');
@@ -35,7 +36,6 @@ angular.module('quizmaster.controllers', ['ngActionCable'])
         animation: 'slide-in-up'
       }).then(function (modal) {
         $scope.modal = modal;
-        $scope.quiz = quiz;
         $scope.openModal();
       });
     };
