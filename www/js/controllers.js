@@ -81,6 +81,9 @@ angular.module('quizmaster.controllers', ['ngActionCable'])
             if (answer.trim().length >= 1) {
               answer_hash = {answer: answer, team_name: team, quiz_id: quiz, question_id: question};
               sendAnswer(answer_hash);
+              angular.element(document.querySelector('.answer_submitted'))[0].style.display = "inline";
+              angular.element(document.querySelector('.answer_form'))[0].style.display = "none";
+
             } else {
               angular.element(document.querySelector('#message')).html('Enter an answer!');
             }
