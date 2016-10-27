@@ -15,13 +15,13 @@ angular.module('quizmaster.controllers', ['ngActionCable'])
 
     $scope.findQuiz = function () {
       $ionicLoading.show({
-        template: 'Loading quiz...'
+          template: 'Loading quiz...'
         }
       );
       code = angular.element(document.querySelector('#codeEntry'))[0].value;
       consumer = new ActionCableChannel('QuizChannel');
       callback = function (obj) {
-        if(obj != null){
+        if (obj != null) {
           quiz = obj;
           $scope.quiz = quiz;
           consumer.unsubscribe()
