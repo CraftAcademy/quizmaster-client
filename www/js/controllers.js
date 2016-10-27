@@ -22,8 +22,7 @@ angular.module('quizmaster.controllers', ['ngActionCable'])
       consumer = new ActionCableChannel('QuizChannel');
       callback = function (obj) {
         if (obj != null) {
-          quiz = obj;
-          $scope.quiz = quiz;
+          $scope.quiz = obj;
           consumer.unsubscribe()
             .then(function () {
               subscribeToQuiz();
@@ -60,22 +59,20 @@ angular.module('quizmaster.controllers', ['ngActionCable'])
           angular.element(document.querySelector('.answer_submitted'))[0].style.display = "none";
         }
       };
-      consumer = new ActionCableChannel('QuizChannel', {quiz_id: quiz.id});
+      consumer = new ActionCableChannel('QuizChannel', {quiz_id: $scope.quiz.id});
       consumer.subscribe(callback)
         .then(function () {
           $scope.registerTeam = function () {
             team_name = angular.element(document.querySelector('#teamName'))[0].value;
             if (team_name.trim().length >= 1) {
               $scope.team_name = team_name;
-              message = {team_name: team_name, quiz_id: quiz.id};
+              message = {team_name: team_name, quiz_id: $scope.quiz.id};
               consumer.send(message, 'create_team');
               $scope.registeredTeam = true;
               angular.element(document.querySelector('#message')).html('Questions will appear here. Hang tight.');
             } else {
               angular.element(document.querySelector('#message')).html('Enter a team name!');
             }
-
-            // angular.element(document.querySelector('#register_team'))[0].hide();
 
           };
           this.submitAnswer = function () {
