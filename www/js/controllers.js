@@ -3,7 +3,7 @@ angular.module('quizmaster.controllers', ['ngActionCable'])
   .controller('DashCtrl', function ($scope) {
   })
 
-  .controller('QuizController', function ($scope, $ionicModal, ActionCableChannel) {
+  .controller('QuizController', function ($scope, $ionicModal, ActionCableChannel, $ionicLoading) {
     // With the new view caching in Ionic, Controllers are only called
     // when they are recreated or on app start, instead of every page change.
     // To listen for when this page is active (for example, to refresh data),
@@ -14,6 +14,10 @@ angular.module('quizmaster.controllers', ['ngActionCable'])
     var consumer, callback, quiz, team_name;
 
     $scope.findQuiz = function () {
+      $ionicLoading.show({
+        template: 'Loading quiz...'
+        }
+      );
       code = angular.element(document.querySelector('#codeEntry'))[0].value;
       consumer = new ActionCableChannel('QuizChannel');
       callback = function (obj) {
@@ -29,10 +33,12 @@ angular.module('quizmaster.controllers', ['ngActionCable'])
                 animation: 'slide-in-up'
               }).then(function (modal) {
                 $scope.modal = modal;
+                $ionicLoading.hide();
                 $scope.openModal();
               });
             });
         } else {
+          $ionicLoading.hide();
           angular.element(document.querySelector('#badCode'))[0].style.display = "inline";
         }
 

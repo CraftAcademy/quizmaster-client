@@ -24,7 +24,7 @@ angular.module('quizmaster', ['ionic', 'quizmaster.controllers', 'quizmaster.ser
   })
 
   .run(function (ActionCableConfig) {
-    ActionCableConfig.wsUri = "wss://equizmaster.com/cable";
+    ActionCableConfig.wsUri = "ws://localhost:3000/cable";
     ActionCableConfig.autoStart = true;
   })
 
