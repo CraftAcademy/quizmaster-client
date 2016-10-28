@@ -57,6 +57,7 @@ angular.module('quizmaster.controllers', ['ngActionCable'])
         } else {
           angular.element(document.querySelector('#message')).html(data);
           angular.element(document.querySelector('.answer_submitted'))[0].style.display = "none";
+          angular.element(document.querySelector('#answers'))[0].style.display = "none";
         }
       };
       consumer = new ActionCableChannel('QuizChannel', {quiz_id: $scope.quiz.id});
@@ -70,6 +71,7 @@ angular.module('quizmaster.controllers', ['ngActionCable'])
               consumer.send(message, 'create_team');
               $scope.registeredTeam = true;
               angular.element(document.querySelector('#message')).html('Questions will appear here. Hang tight.');
+
             } else {
               angular.element(document.querySelector('#message')).html('Enter a team name!');
             }
@@ -98,6 +100,7 @@ angular.module('quizmaster.controllers', ['ngActionCable'])
             }
             return false;
           };
+          var seeAnswerButton = angular.element(document.querySelector('#see_answers'));
         });
     };
 
