@@ -16,6 +16,9 @@ ion-view, ion-modal-view {
   background: linear-gradient(to bottom, #ffc501 0%, #fe9600 100%);
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffc501', endColorstr='#fe9600', GradientType=0 );
 }
+.scroll{
+  transform: inherit !important;
+}
 img {
   display: block;
   margin: 20px auto;
@@ -158,4 +161,13 @@ input[type="text"].form-control {
   display: block;
   float: right;
   padding: 1%;
+}
+.cancel-icon {
+  font-size: 400%;
+  color: red;
+  opacity: .2;
+  position: absolute;
+  bottom: .2em;
+  right: .3em;
+  z-index: 1;
 }

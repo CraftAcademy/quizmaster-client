@@ -103,6 +103,11 @@ angular.module('quizmaster.controllers', ['ngActionCable'])
 
     $scope.openModal = function () {
       $scope.modal.show();
+    };
+
+    $scope.closeModal = function () {
+      consumer.unsubscribe();
+      $scope.modal.hide();
     }
 
   })
