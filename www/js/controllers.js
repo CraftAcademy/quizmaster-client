@@ -98,8 +98,6 @@ angular.module('quizmaster.controllers', ['ngActionCable'])
             }
             return false;
           };
-          this.showAnswers = function () {
-          };
         });
     };
 
