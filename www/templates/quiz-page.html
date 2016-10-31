@@ -3,14 +3,17 @@
     <div class='box'>
       <h1>Welcome to Quiz: {{quiz.name}}</h1>
       <div id='register_team' ng-hide="registeredTeam">
-        Enter your teamname and press the button!
+        Enter your team name.
         <div class="form-control code">
-          <input type="text" placeholder="Enter a Team Name" class="form-control" id='teamName'>
+          <input type="text" placeholder="Team Name" class="form-control" id='teamName'>
         </div>
-        <button ng-click="registerTeam();" class="btn btn-primary btn-lg btn-block">Register team and play</button>
+        <button ng-click="registerTeam();" class="btn btn-primary btn-lg btn-block">Register and play</button>
       </div>
       <div id='message'></div>
     </div>
     <img src='../img/logo.png'/>
+    <div class="close-button" ng-click="closeModal()">
+      <i class='icon cancel-icon ion-android-cancel'></i>
+    </div>
   </ion-content>
 </ion-modal-view>

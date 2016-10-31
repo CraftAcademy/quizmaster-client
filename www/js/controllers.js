@@ -15,7 +15,8 @@ angular.module('quizmaster.controllers', ['ngActionCable'])
 
     $scope.findQuiz = function () {
       $ionicLoading.show({
-          template: 'Loading quiz...'
+          template: 'Loading quiz...',
+          duration: 3000
         }
       );
       code = angular.element(document.querySelector('#codeEntry'))[0].value;
@@ -103,6 +104,11 @@ angular.module('quizmaster.controllers', ['ngActionCable'])
 
     $scope.openModal = function () {
       $scope.modal.show();
+    };
+
+    $scope.closeModal = function () {
+      consumer.unsubscribe();
+      $scope.modal.hide();
     }
 
   })

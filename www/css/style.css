@@ -2,7 +2,8 @@
 @import url('https://fonts.googleapis.com/css?family=Creepster');
 @import url('https://fonts.googleapis.com/css?family=Open+Sans');
 body {
-  font-size: 16px;
+  font-size: 200%;
+  line-height: normal;
   font-family: 'Open Sans', sans-serif;
 }
 ion-view, ion-modal-view {
@@ -15,6 +16,9 @@ ion-view, ion-modal-view {
   background: -ms-linear-gradient(top, #ffc501 0%, #fe9600 100%);
   background: linear-gradient(to bottom, #ffc501 0%, #fe9600 100%);
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffc501', endColorstr='#fe9600', GradientType=0 );
+}
+.scroll{
+  transform: inherit !important;
 }
 img {
   display: block;
@@ -31,10 +35,11 @@ img {
 
 .box h1 {
   font-family: 'Creepster', sans-serif;
+  font-size: 150%;
 }
 .question_container, .question_headline {
   font-family: 'Creepster', sans-serif;
-  font-size:24px;
+  /*font-size:24px;*/
 }
 .answer_submitted {
   display: none;
@@ -49,7 +54,7 @@ img {
   display: inline-block;
   padding: 6px 12px;
   margin-bottom: 0;
-  font-size: 14px;
+  font-size: 100%;
   font-weight: normal;
   line-height: 1.428571429;
   text-align: center;
@@ -69,7 +74,7 @@ img {
   max-height: 50px;
   padding-right:5px;
   padding-left:5px;
-  font-size: 130%;
+  /*font-size: 130%;*/
 }
 .btn-primary {
   color: #FFFFFF;
@@ -97,10 +102,10 @@ img {
 input[type="text"].form-control {
   display: block;
   width: 100%;
-  height: 34px;
+  height: inherit;
   padding: 6px 12px;
-  font-size: 14px;
-  line-height: 1.42857143;
+  font-size: 100%;
+  line-height: inherit;
   color: #555;
   background-color: #fff;
   background-image: none;
@@ -109,7 +114,7 @@ input[type="text"].form-control {
 }
 #send_question { display: inline-block; float:right;}
 .question p {
-  font-size: 20px;
+  /*font-size: 20px;*/
   float:left;
   min-height:50px;
   line-height: 50px;
@@ -161,4 +166,13 @@ input[type="text"].form-control {
   display: block;
   float: right;
   padding: 1%;
+}
+.cancel-icon {
+  font-size: 200%;
+  color: red;
+  opacity: .2;
+  position: absolute;
+  bottom: .2em;
+  right: .3em;
+  z-index: 1;
 }
