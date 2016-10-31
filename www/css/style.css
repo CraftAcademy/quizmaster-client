@@ -39,6 +39,9 @@ img {
 .answer_submitted {
   display: none;
 }
+#see_answers {
+  display: none;
+}
 #badCode {
   display: none;
 }
