@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('quizmaster', ['ionic', 'quizmaster.controllers', 'quizmaster.services'])
+angular.module('quizmaster', ['ionic', 'quizmaster.controllers'])
 
   .run(function ($ionicPlatform) {
     $ionicPlatform.ready(function () {
@@ -24,7 +24,7 @@ angular.module('quizmaster', ['ionic', 'quizmaster.controllers', 'quizmaster.ser
   })
 
   .run(function (ActionCableConfig) {
-    ActionCableConfig.wsUri = "ws://localhost:3000/cable";
+    ActionCableConfig.wsUri = "wss://equizmaster.com/cable";
     ActionCableConfig.autoStart = true;
   })
 

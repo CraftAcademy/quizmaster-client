@@ -1,7 +1,19 @@
-<ion-modal-view view-title="Quiz Page">
-  <ion-content class="padding">
-    Here's the page where we'll put the quiz bits. The #message div is below:
-    <div id="message"></div>
-    And this is below the #message div.
+<ion-modal-view view-title='Quiz Page'>
+  <ion-content class='padding'>
+    <div class='box'>
+      <h1>Welcome to Quiz: {{quiz.name}}</h1>
+      <div id='register_team' ng-hide="registeredTeam">
+        Enter your team name.
+        <div class="form-control code">
+          <input type="text" placeholder="Team Name" class="form-control" id='teamName'>
+        </div>
+        <button ng-click="registerTeam();" class="btn btn-primary btn-lg btn-block">Register and play</button>
+      </div>
+      <div id='message'></div>
+    </div>
+    <img src='../img/logo.png'/>
+    <div class="close-button" ng-click="closeModal()">
+      <i class='icon cancel-icon ion-android-cancel'></i>
+    </div>
   </ion-content>
 </ion-modal-view>
